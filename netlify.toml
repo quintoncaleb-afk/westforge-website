@@ -1,3 +1,22 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Westforge Supply — Netlify Configuration
+#
+# IMPORTANT: This file must be in the ROOT of the folder you deploy.
+# Your deployment folder should look like:
+#   index.html
+#   about.html
+#   capabilities.html
+#   contact.html
+#   request-quote.html
+#   css/style.css
+#   js/main.js
+#   assets/westforge-capability-statement.pdf
+#   netlify.toml
+#
+# Deploy by dragging this entire folder to app.netlify.com/drop
+# OR push to GitHub and set the publish directory to the folder containing index.html
+# ─────────────────────────────────────────────────────────────────────────────
+
 [build]
   publish = "."
 
@@ -9,27 +28,32 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[redirects]]
-  from = "/quote"
-  to   = "/request-quote.html"
+  from   = "/quote"
+  to     = "/request-quote.html"
   status = 301
 
 [[redirects]]
-  from = "/capabilities"
-  to   = "/capabilities.html"
+  from   = "/capabilities"
+  to     = "/capabilities.html"
   status = 301
 
 [[redirects]]
-  from = "/about"
-  to   = "/about.html"
+  from   = "/about"
+  to     = "/about.html"
   status = 301
 
 [[redirects]]
-  from = "/contact"
-  to   = "/contact.html"
-  status = 301
-
-[[redirects]]
-  from = "/home"
-  to   = "/index.html"
+  from   = "/contact"
+  to     = "/contact.html"
   status = 301
